@@ -1,0 +1,34 @@
+/* Adjust default Streamlit header */
+header[data-testid="stHeader"] {
+    background-color: transparent;
+}
+
+/* Adjust header */
+.header {
+    position: fixed;
+    top: -8px;
+    background-color: #0E1117;
+    width: 100%;
+    height: 80px;
+    z-index: 999;
+    display: flex;
+    align-items: flex-end;
+}
+
+/* Center and limit width of chat messages */
+.stChatMessage {
+    width: 800px;
+    margin: 0 auto;
+}
+
+/* Style chat input */
+.stChatInput {
+    width: 850px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
+
+/* Target the parent container of the chat input */
+.stChatInput > div {
+    width: 100% !important;
+}
