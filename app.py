@@ -4,7 +4,7 @@ from langchain_core.output_parsers import StrOutputParser
 
 from models.mental_chatbot import MentalChatbot
 from utils.chat_utils import format_chat_history, load_css
-from prompts.chat_prompts import get_chat_prompt
+from configs.prompts import get_chat_prompt
 
 # Set page config
 st.set_page_config(
@@ -50,9 +50,9 @@ if "is_responding" not in st.session_state:
     st.session_state.is_responding = False
 
 if "llm_chain" not in st.session_state:
-    prompt = get_chat_prompt()
+    chat_prompt = get_chat_prompt()
     llm = MentalChatbot(max_new_tokens=24)
-    st.session_state.llm_chain = prompt | llm | StrOutputParser()
+    st.session_state.llm_chain = chat_prompt | llm | StrOutputParser()
 
 # Display chat history
 for message in st.session_state.chat_history:

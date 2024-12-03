@@ -1,6 +1,6 @@
 from langchain.prompts import PromptTemplate
 
-MENTAL_HEALTH_TEMPLATE = """
+CHAT_PROMPT_TEMPLATE = """
 <|system|>
 You are a helpful mental health chatbot. Provide supportive and empathetic responses.</s>
 {chat_history}
@@ -11,6 +11,6 @@ You are a helpful mental health chatbot. Provide supportive and empathetic respo
 
 def get_chat_prompt() -> PromptTemplate:
     return PromptTemplate(
-        template=MENTAL_HEALTH_TEMPLATE,
+        template=CHAT_PROMPT_TEMPLATE,
         input_variables=["chat_history", "user_input"]
     ) 
