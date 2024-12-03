@@ -2,13 +2,15 @@ import streamlit as st
 from langchain_core.messages import AIMessage, HumanMessage
 from langchain_core.output_parsers import StrOutputParser
 
+from components.header import render_header
+from components.sidebar import render_sidebar
+from configs.prompts import get_chat_prompt
 from models.mental_chatbot import MentalChatbot
 from utils.chat_utils import format_chat_history, load_css
-from configs.prompts import get_chat_prompt
 
 # Set page config
 st.set_page_config(
-    page_title="Mental Health Chatbot",
+    page_title="MindEase",
     page_icon="🧠",
     layout="wide",
     initial_sidebar_state="collapsed"
@@ -17,30 +19,10 @@ st.set_page_config(
 # Load and apply CSS
 css = load_css('assets/css/styles.css')
 st.markdown(f"<style>{css}</style>", unsafe_allow_html=True)
-st.markdown("""
-<div class="header">
-    <h3>Mental Health Chatbot 🤖</h3>
-</div>
-""", unsafe_allow_html=True)
 
-# Sidebar setup
-with st.sidebar:
-    st.header("💭 **New Chat**")
-    if st.button("Start New Chat", type="primary", use_container_width=True, icon="💭"):
-        st.session_state.chat_history = []
-        st.session_state.is_responding = False
-        st.rerun()
-
-    st.markdown("---")
-    st.header("ℹ️ **About**")
-    st.markdown("""
-    This AI assistant is designed to:
-    - Provide a supportive conversation, empathetic and non-judgmental.
-    - Offer a safe space to share thoughts, feelings, and any concerns.
-    - Help you getting through difficult times.
-    
-    **Note:** This is not a replacement for professional mental health care.
-    """)
+# Render components
+render_header()
+render_sidebar()
 
 # Initialize session state
 if "chat_history" not in st.session_state:
